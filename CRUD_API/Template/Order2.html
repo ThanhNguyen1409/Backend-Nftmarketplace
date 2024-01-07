@@ -1,0 +1,188 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/numeral@2.0.6/numeral.min.js"></script>
+
+    <style>
+        .table-style {
+            width: 100%;
+            line-height: 24px;
+            border-bottom: 10px solid;
+            border-color: #e1e1e1;
+        }
+
+        .content {
+            max-width: 730px;
+            margin: auto;
+        }
+
+        .figure {
+            display: flex;
+            border-bottom: 1px solid;
+            border-color: #e1e1e1;
+            gap: 10px;
+        }
+
+            .figure img {
+                max-width: 160px;
+                width: 100%;
+            }
+
+            .figure .details {
+                width: 100%;
+                gap: 10px;
+                padding: 15px;
+            }
+
+        .table-price {
+            width: 100%;
+            line-height: 24px;
+            width: 100%;
+            line-height: 24px;
+            border-bottom: 1px solid;
+            border-color: #e1e1e1;
+        }
+
+            .table-price td {
+                height: 35px;
+                color: #585858
+            }
+
+            .table-price .total {
+                color: #f27c24;
+                font-weight: bold;
+            }
+
+        .table-ship {
+            margin-top: 10px;
+        }
+
+            .table-ship td {
+                height: 35px;
+                color: #585858
+            }
+
+        .table-address td {
+            height: 35px;
+            color: #585858
+        }
+
+        .table-address .text {
+            color: #0f146d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>Order Confirmation</h1>
+        <p>
+            Xin chào {customer_name},
+            Chúng tôi đã nhận được yêu cầu đặt hàng của bạn và đang xử lý nhé.
+        </p>
+        <div class="address">
+            <table class="table-style table-address">
+                <tbody>
+                    <tr>
+                        <td style="width: 25%;" class="text">Tên</td>
+                        <td style="width: 75%;">{customer_name}</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="text">Địa chỉ</td>
+                        <td>{order_address}</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="text">Điện thoại</td>
+                        <td>{customer_phone}</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="text">Email</td>
+                        <td>{customer_email}</td>
+
+                    </tr>
+
+                    
+
+                    <tr></tr>
+                </tbody>
+
+            </table>
+        </div>
+        {product_content}
+        <div class="prices">
+            <table class="table-price">
+                <tbody>
+                    <tr>
+                        <td style="width: 49%;">
+                            Thành tiền
+                        </td>
+                        
+                        <td style="text-align: right;">{order_total}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Phí vận chuyển</td>
+                        
+                        <td style="text-align: right;">0</td>
+                    </tr>
+
+                    <tr>
+                        <td>Tổng cộng</td>
+                        
+                        <td id="example" style="text-align: right;" class="total">{order_total}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="shipping">
+            <table class="table-style table-ship">
+                <tbody>
+                    <tr>
+                        <td style="
+        width: 49%;">
+                            Tùy chọn vận chuyển
+                        </td>
+
+                        <td style="text-align: right;">Giao hàng tiêu chuẩn</td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td>Hình thức thanh toán</td>
+
+                        <td style="text-align: right;">Thanh toán khi nhận hàng</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <script>
+        // Sử dụng Numeral.js để định dạng số và gán giá trị vào thẻ td
+        
+        var formattedTotal = numeral({order_total}).format('0,0') + ' VND';
+
+        // Gán giá trị đã được định dạng vào thẻ td
+        document.getElementById("example").innerText = formattedTotal;
+    </script>
+
+</body>
+
+</html>
